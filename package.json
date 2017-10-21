@@ -1,0 +1,23 @@
+{
+  "name": "mother-bear-dashboard",
+  "version": "1.0.0",
+  "description": "A dashboard to aid students by providing handy day-to-day information within a quick glance.",
+  "main": "main.js",
+  "scripts": {
+    "test": "electrion ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuck-aka-ben/mbd.git"
+  },
+  "keywords": [
+    "Kutztown",
+    "Dashboard"
+  ],
+  "author": "Benjamin Thomas <benjamin@thomasnetwork.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chuck-aka-ben/mbdb/issues"
+  },
+  "homepage": "https://github.com/chuck-aka-ben/mbdb#readme"
+}
