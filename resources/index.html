@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mother Bear Dashboard</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fuild">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">Mother Bear Dashboard</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container" ng-app="app">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <weather-panel></weather-panel>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <schedule-panel></schedule-panel>
+        </div>
+        <div class="col-xs-12  col-md-4">
+          <time-panel></time-panel>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <quote-panel></quote-panel>
+        </div>
+      </div>
+    </div>
+    <!--
+      Known work around for working with jQuery with Node/CommonJS + Browser environment
+      https://stackoverflow.com/a/38556376 21/13/17
+    -->
+    <script>window.jQuery = window.$ = require('./js/jquery.min.js')</script>
+    <script>require("./js/bootstrap.min.js")</script>
+    <script>require("./js/angular.min.js")</script>
+    <script>require("./js/app/app.module.js")</script>
+    <script>require("./js/app/time-panel/time-panel.component.js")</script>
+    <script>require("./js/app/weather-panel/weather-panel.component.js")</script>
+    <script>require("./js/app/quote-panel/quote-panel.component.js")</script>
+    <script>require("./js/app/schedule-panel/schedule-panel.component.js")</script>
+  </body>
+</html>
