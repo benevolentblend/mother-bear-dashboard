@@ -14,7 +14,7 @@ const {app, BrowserWindow} = electron;
 
 // When ready, create the main window
 app.on('ready', () => {
-  let win = new BrowserWindow();
+  let win = new BrowserWindow({width: 1200});
   win.loadURL(`file://${__dirname}/resources/index.html`);
 });
 

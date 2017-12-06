@@ -20,7 +20,7 @@
     var timeoutid;
     var location = 'http://api.openweathermap.org/data/2.5/weather';
     var apikey = 'ddd84a4441bdebf3df5df4140cae463a';
-    var q = '19530';
+    var q = 'Kutztown';
     var units = 'imperial';
     var uri = location + '?apikey=' + apikey + '&q=' + q + '&units=' + units;
     vm.response = undefined;
