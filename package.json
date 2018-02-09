@@ -4,8 +4,8 @@
   "description": "A dashboard to aid students by providing handy day-to-day information within a quick glance.",
   "main": "main.js",
   "scripts": {
-    "test": "electrion .",
-    "start": "electrion ."
+    "test": "electron .",
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
