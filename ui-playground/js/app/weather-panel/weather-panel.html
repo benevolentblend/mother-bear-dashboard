@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-body" ng-show="$ctrl.response !== undefined">
+    <div class="row">
+      <div id="weather-icon" class="col-xs-4">
+        <img class="img-responsive" ng-src="http://openweathermap.org/img/w/{{$ctrl.response.weather[0].icon}}.png" alt="icon">
+      </div>
+      <div id="weather-info" class="col-xs-8">
+        <h3 id="weather-description">{{$ctrl.response.weather[0].description | uppercase}}</h3>
+
+        <h4 id="weather-current">{{$ctrl.response.main.temp}} &#8457;</h4>
+        <p>
+          High: <span id="weather-high">{{$ctrl.response.main.temp_max}} &#8457;</span>
+           Low: <span id="weather-low">{{$ctrl.response.main.temp_min}} &#8457;</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" ng-show="$ctrl.response === undefined">
+    Loading...
+  </div>
+</div>

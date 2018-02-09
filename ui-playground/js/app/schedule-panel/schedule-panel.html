@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p ng-show="$ctrl.response !== undefined && $ctrl.response.status == 401">
+      Click <a href="/auth">here</a> to authenticate.
+    </p>
+    <table class="table">
+      <tbody>
+        <tr ng-repeat="event in $ctrl.response.events">
+          <td>{{event.summary}}</td>
+          <td class="pull-right">{{event.start.dateTime | date:'shortTime'}} - {{event.end.dateTime | date:'shortTime'}}<td
+        </tr>
+      </tbody>
+    </table>
+    <div ng-show="$ctrl.response === undefined">
+      Loading...
+    </div>
+  </div>
+</div>
