@@ -15,15 +15,33 @@
    *                                         requests
    * @return {}                              None
    */
-  function weatherInfoController($interval, $http) {
+  function weatherInfoController($interval, $http, $scope) {
     var vm = this;
     var timeoutid;
+    var status = false;
     var location = 'http://api.openweathermap.org/data/2.5/weather';
     var apikey = 'ddd84a4441bdebf3df5df4140cae463a';
     var q = 'Kutztown';
     var units = 'imperial';
     var uri = location + '?apikey=' + apikey + '&q=' + q + '&units=' + units;
     vm.response = undefined;
+
+    vm.start = function() {
+      if(!status) {
+        //Setup interval call on update every half second (in milliseconds)
+        timeoutid = $interval(update, 5 * 60 * 1000);
+        status = true;
+        update();
+      }
+
+    }
+
+    vm.stop = function() {
+      if(status) {
+        $interval.cancel(timeoutid);
+        status = false;
+      }
+    }
 
     /**
      * successful http callback
@@ -56,21 +74,23 @@
       $http.get(uri,{cache: false}).then(success, fail);
     }
 
-    // Setup interval call on update every 5 minutes (in milliseconds)
-    timeoutid = $interval(update, 5 * 60 * 1000);
+    $scope.$on('login', function(event, profile) {
+      vm.start();
+    });
+
+    $scope.$on('logout', function(event) {
+      vm.stop();
+    });
 
     // If the component is destroyed, stop the interval call
     vm.$onDestroy = function() {
       $interval.cancel(timeoutid);
     }
-
-    // Call update for the first time
-    update();
   }
 
   // If this file is complied with a minifier program, insure that the correct
   // modules are injected
-  weatherInfoController.$inject = ['$interval', '$http'];
+  weatherInfoController.$inject = ['$interval', '$http', '$scope'];
 
   // Setup the weatherInfo component with the templateUrl and controller
   var weatherInfo = {

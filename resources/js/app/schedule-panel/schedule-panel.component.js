@@ -11,12 +11,29 @@
   };
 
 
-  function calendarInfoController($interval, $http) {
+  function calendarInfoController($interval, $http, $scope) {
     var vm = this;
     var timeoutid;
+    var status = false;
     var location = '/calendar/benjamin@thomasnetwork.net';
 
     vm.response = undefined;
+
+    vm.start = function() {
+      if(!status) {
+        timeoutid = $interval(update, 5 * 60 * 1000);
+        status = true;
+        update();
+      }
+
+    }
+
+    vm.stop = function() {
+      if(status) {
+        $interval.cancel(timeoutid);
+        status = false;
+      }
+    }
 
     function success(res) {
       vm.response = res.data;
@@ -66,16 +83,21 @@
       //$http.get(location, {cache: false}).then(success, fail);
     }
 
-    timeoutid = $interval(update, 5 * 60 * 1000);
+    $scope.$on('login', function(event, profile) {
+      vm.start();
+    });
+
+    $scope.$on('logout', function(event) {
+      vm.stop();
+    });
 
     vm.$onDestroy = function() {
       $interval.cancel(timeoutid);
     }
 
-    update();
   }
 
-  calendarInfoController.$inject = ['$interval', '$http'];
+  calendarInfoController.$inject = ['$interval', '$http', '$scope'];
 
   angular
     .module('app')
