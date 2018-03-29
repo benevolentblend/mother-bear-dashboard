@@ -5,18 +5,17 @@
 
     vm.email = "";
     vm.password = "";
-
     vm.loggedIn = false;
-
     vm.message = null;
 
     function successful (res) {
       vm.loggedIn = true;
       vm.message = null;
+      vm.password = '';
       console.log(res);
 
       $scope.$broadcast('login', {
-        username: vm.username
+        email: vm.email
       });
     }
 
@@ -37,6 +36,7 @@
 
     this.logoutUser = function() {
       vm.loggedIn = false;
+      $http.post('http://localhost/motherbeardashboard/logout.php', data)
       $scope.$broadcast('logout');
     }
   }
