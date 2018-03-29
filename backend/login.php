@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('mysql_connect.php');
 http_response_code(401);
 $responce = new stdClass();
@@ -10,13 +12,11 @@ $password = $_POST['password'];
 
 openConnection();
 
-$responce->values = mysqli_escape_string($connection, $email);
-
 /* Select user where email and password match */
 $query = "SELECT * FROM `users` WHERE `email` = '".
 mysqli_escape_string($connection, $email)."' AND `password` ='".
 mysqli_escape_string($connection, $password)."';";
-$responce->query = $query;
+
 $result = runQuery($query);
 if(mysqli_num_rows($result) < 1) {
   closeConnection();
@@ -28,6 +28,9 @@ if(mysqli_num_rows($result) < 1) {
 
 $user = mysqli_fetch_assoc($result);
 http_response_code(200);
+
+$_SESSION['user'] = $user->email;
+$_SESSION['authenicated'] = true;
 
 echo json_encode($responce);
 

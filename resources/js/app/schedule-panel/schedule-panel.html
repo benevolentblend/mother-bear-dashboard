@@ -5,9 +5,9 @@
     </p>
     <table class="table">
       <tbody>
-        <tr ng-repeat="event in $ctrl.response.events">
-          <td>{{event.summary}}</td>
-          <td class="pull-right">{{event.start.dateTime | date:'shortTime'}} - {{event.end.dateTime | date:'shortTime'}}<td
+        <tr ng-repeat="event in $ctrl.response.events | calendar">
+          <td>{{event.title}}</td>
+          <td class="pull-right">{{event.starttime | date:'shortTime'}} - {{event.endtime | date:'shortTime'}}</td>
         </tr>
       </tbody>
     </table>

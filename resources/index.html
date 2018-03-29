@@ -30,11 +30,11 @@
             <div class="alert alert-warning" ng-show="loginctl.message">
               {{loginctl.message}}
             </div>
-            <form class="panel-body" method="get">
+            <form class="panel-body" method="get" ng-submit="loginctl.loginUser()">
               <div class="form-group">
                 <label>Email</label>
                 <input class="form-control" type="text" placeholder="Email"
-                  name="email" ng-model="loginctl.email">
+                  name="email" ng-model="loginctl.email" autofocus>
               </div>
               <div class="form-group">
                 <label>Password</label>
@@ -42,7 +42,7 @@
                   placeholder="Password" name="password"
                   ng-model="loginctl.password">
               </div>
-              <button type="button" class="btn btn-default" ng-click="loginctl.loginUser()">Login</button>
+              <button type="submit" class="btn btn-default" ng-click="loginctl.loginUser()">Login</button>
             </form>
           </div>
         </div>
@@ -77,5 +77,6 @@
     <script>require("./js/app/weather-panel/weather-panel.component.js")</script>
     <script>require("./js/app/quote-panel/quote-panel.component.js")</script>
     <script>require("./js/app/schedule-panel/schedule-panel.component.js")</script>
+    <script>require("./js/app/schedule-panel/schedule-panel.filter.js")</script>
   </body>
 </html>

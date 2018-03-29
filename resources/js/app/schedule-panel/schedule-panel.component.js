@@ -18,6 +18,7 @@
     var location = '/calendar/benjamin@thomasnetwork.net';
 
     vm.response = undefined;
+    vm.email = '';
 
     vm.start = function() {
       if(!status) {
@@ -45,45 +46,12 @@
     }
 
     function update() {
-      var dumpydata = {
-        data: {
-          events:[{
-            "id": 123,
-            "summary": "CSC 328",
-            "start": {
-              "dateTime": "2017-10-21T08:00:00-04:00"
-            },
-            "end": {
-              "dateTime": "2017-10-21T09:20:00-04:00"
-            },
-          },
-          {
-            "id": 126,
-            "summary": "TVR 201",
-            "start": {
-              "dateTime": "2017-10-21T09:30:00-04:00"
-            },
-            "end": {
-              "dateTime": "2017-10-21T11:00:00-04:00"
-            },
-          },
-          {
-            "id": 124,
-            "summary": "CSC 354",
-            "start": {
-              "dateTime": "2017-10-21T13:30:00-04:00"
-            },
-            "end": {
-              "dateTime": "2017-10-21T15:00:00-04:00"
-            },
-          }]
-        }
-      }
-      success(dumpydata);
-      //$http.get(location, {cache: false}).then(success, fail);
+      var location = 'http://localhost/motherbeardashboard/calendar.php?email=' + vm.email;
+      $http.get(location, {cache: false}).then(success, fail);
     }
 
     $scope.$on('login', function(event, profile) {
+      vm.email = profile.email;
       vm.start();
     });
 
