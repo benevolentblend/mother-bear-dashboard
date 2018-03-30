@@ -7,6 +7,14 @@ $responce = new stdClass();
 $responce->success = true;
 $responce->message = "";
 
+if(!isset($_POST['email']) || !isset($_POST['password'])) {
+  $responce->success = false;
+  $responce->message = 'missing email or password';
+
+  echo json_encode($responce);
+  die();
+}
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 
