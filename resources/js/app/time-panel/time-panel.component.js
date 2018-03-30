@@ -18,10 +18,28 @@
    *                                         requests
    * @return {}                           None
    */
-  function dateTimeController($interval) {
+  function dateTimeController($interval, $scope) {
     var vm = this;
     var timeoutid;
+    var status = false;
     vm.datetime = new Date();
+
+    vm.start = function() {
+      if(!status) {
+        //Setup interval call on update every half second (in milliseconds)
+        timeoutid = $interval(update, 500);
+        status = true;
+        update();
+      }
+
+    }
+
+    vm.stop = function() {
+      if(status) {
+        $interval.cancel(timeoutid);
+        status = false;
+      }
+    }
 
     /**
      * gets current time from the browser
@@ -32,19 +50,21 @@
       vm.datetime = new Date();
     }
 
-    //Setup interval call on update every half second (in milliseconds)
-    timeoutid = $interval(update, 500);
+    $scope.$on('login', function(event, profile) {
+      vm.start();
+    });
+
+    $scope.$on('logout', function(event) {
+      vm.stop();
+    });
 
     // If the component is destroyed, stop the interval call
     vm.$onDestroy = function() {
       $interval.cancel(timeoutid);
     }
-
-    // Call update for the first time
-    update();
   }
 
-  dateTimeController.$inject = ['$interval'];
+  dateTimeController.$inject = ['$interval', '$scope'];
 
   var dateTime = {
     templateUrl: "js/app/time-panel/time-panel.html",
