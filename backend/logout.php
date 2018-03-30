@@ -17,5 +17,4 @@ $_SESSION['user'] = null;
 
 echo json_encode($responce);
 
-closeConnection();
 ?>

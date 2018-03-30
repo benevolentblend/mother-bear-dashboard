@@ -8,7 +8,7 @@
     vm.loggedIn = false;
     vm.message = null;
 
-    function successful (res) {
+    function successfulLogin (res) {
       vm.loggedIn = true;
       vm.message = null;
       vm.password = '';
@@ -19,11 +19,24 @@
       });
     }
 
-    function failed (res) {
+    function successfulLogout (res) {
+      vm.loggedIn = false;
+      console.log(res);
+
+      $scope.$broadcast('logout');
+    }
+
+    function failedLogin (res) {
       console.log('login failed.')
       console.log(res);
       vm.message = res.data.message;
       vm.loggedIn = false;
+    }
+
+    function failedLogout (res) {
+      console.log('logout failed.')
+      console.log(res);
+      vm.message = res.data.message;
     }
 
     this.loginUser = function() {
@@ -31,13 +44,11 @@
         email: vm.email,
         password: vm.password
       }
-      $http.post('http://localhost/motherbeardashboard/login.php', data).then(successful, failed);
+      $http.post('http://localhost/motherbeardashboard/login.php', data).then(successfulLogin, failedLogin);
     }
 
     this.logoutUser = function() {
-      vm.loggedIn = false;
-      $http.post('http://localhost/motherbeardashboard/logout.php', data)
-      $scope.$broadcast('logout');
+      $http.get('http://localhost/motherbeardashboard/logout.php').then(successfulLogout, failedLogout);
     }
   }
 

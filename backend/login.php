@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) < 1) {
 $user = mysqli_fetch_assoc($result);
 http_response_code(200);
 
-$_SESSION['user'] = $user->email;
+$_SESSION['user'] = $user['email'];
 $_SESSION['authenicated'] = true;
 
 echo json_encode($responce);
