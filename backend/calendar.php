@@ -7,14 +7,15 @@ $responce = new stdClass();
 $responce->success = true;
 $responce->events = array();
 
-if(!$_SESSION['authenicated']) {
+if(!isset($_SESSION['authenicated']) || !($_SESSION['user'])) {
   http_response_code(401);
   $responce->success = false;
+  $responce->message = 'Not authenicated.';
   echo json_encode($responce);
   die();
 }
 
-$email = $_GET['email'];
+$email = $_SESSION['user'];
 
 openConnection();
 
