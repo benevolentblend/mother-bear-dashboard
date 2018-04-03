@@ -10,6 +10,10 @@
 
     function successfulLogin (res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      customizeINIT();
+>>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
 =======
       customizeINIT();
 >>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c

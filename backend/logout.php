@@ -4,6 +4,7 @@ session_start();
 $responce = new stdClass();
 $responce->success = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 $responce->events = array();
 
 if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
@@ -12,6 +13,8 @@ if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
   echo json_encode($responce);
   die();
 }
+=======
+>>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
 =======
 >>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
 
