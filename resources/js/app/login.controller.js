@@ -9,6 +9,10 @@
     vm.message = null;
 
     function successfulLogin (res) {
+<<<<<<< HEAD
+=======
+      customizeINIT();
+>>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
       vm.loggedIn = true;
       vm.message = null;
       vm.password = '';
