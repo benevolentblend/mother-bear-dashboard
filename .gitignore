@@ -57,12 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
-*.example
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+*backend/config.php
 ui-playground
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
-=======
-ui-playground
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
