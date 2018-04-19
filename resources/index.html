@@ -15,15 +15,7 @@
           <a href="#" class="navbar-brand">Mother Bear Dashboard</a>
         </div>
         <ul class="nav navbar-nav navbar-right" ng-show="loginctl.loggedIn">
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <li role="presentation"><a href="#">Customize</a></li>
-=======
           <li role="presentation"><button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#customizeModal">Customize</button></li>
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
-=======
-          <li role="presentation"><button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#customizeModal">Customize</button></li>
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
           <li role="presentation"><a href="#" ng-click="loginctl.logoutUser()">Logout</a></li>
         </ul>
       </div>
@@ -62,7 +54,7 @@
         <div class="col-xs-12 col-md-4">
           <schedule-panel></schedule-panel>
         </div>
-        <div class="col-xs-12  col-md-4">
+        <div class="col-xs-12 col-md-4">
           <time-panel></time-panel>
         </div>
       </div>
@@ -76,31 +68,7 @@
     <div class="modal fade" id="customizeModal" tabindex="-1" role="dialog" aria-labelledby="customizeModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Customize</h4>
-          </div>
-          <div class="modal-body">
-            <form class="" action="#" method="post">
-              <div class="form-group">
-                <label>Primary Color</label>
-                <input id="color1" class="form-control" type="color" name="color" value="#ffffff">
-              </div>
-              <div class="form-group">
-                <label>Secondary Color</label>
-                <input id="color2" class="form-control" type="color" name="color" value="#701931">
-              </div>
-              <div class="form-group">
-                <label>Highlight Color</label>
-                <input id="color3" class="form-control" type="color" name="color" value="#cec7bf">
-              </div>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" id="closeCustomize" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" id="saveCustomize" class="btn btn-primary">Save changes</button>
-          </div>
+          <preference-modal></preference-modal>
         </div>
       </div>
     </div>
@@ -111,38 +79,15 @@
     -->
 
     <script>window.jQuery = window.$ = require('./js/jquery.min.js')</script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <script>require("./js/bootstrap.min.js")</script>
-    <script>require("./js/angular.min.js")</script>
-    <script>require("./js/app/app.module.js")</script>
-    <script>require("./js/app/login.controller.js")</script>
-    <script>require("./js/app/time-panel/time-panel.component.js")</script>
-    <script>require("./js/app/weather-panel/weather-panel.component.js")</script>
-    <script>require("./js/app/quote-panel/quote-panel.component.js")</script>
-    <script>require("./js/app/schedule-panel/schedule-panel.component.js")</script>
-    <script>require("./js/app/schedule-panel/schedule-panel.filter.js")</script>
-=======
-=======
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/angular.min.js"></script>
     <script src="./js/app/app.module.js"></script>
     <script src="./js/app/login.controller.js"></script>
+    <script src="./js/app/prefence-modal/prefence-modal.component.js"></script>
     <script src="./js/app/time-panel/time-panel.component.js"></script>
     <script src="./js/app/weather-panel/weather-panel.component.js"></script>
     <script src="./js/app/quote-panel/quote-panel.component.js"></script>
     <script src="./js/app/schedule-panel/schedule-panel.component.js"></script>
     <script src="./js/app/schedule-panel/schedule-panel.filter.js"></script>
-    <script src="./js/customize.js"></script>
-    <script>
-    angular.element(document).ready(function () {
-        customizeINIT();
-    });
-    </script>
-<<<<<<< HEAD
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
-=======
->>>>>>> a224eb995a55b9f73bcae6b52c1c90336f18f50c
   </body>
 </html>
