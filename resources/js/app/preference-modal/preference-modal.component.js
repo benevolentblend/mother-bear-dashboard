@@ -6,12 +6,12 @@
 
 (function() {
   var preferenceInfo = {
-    templateUrl: 'js/app/prefence-modal/prefernce-modal.html',
+    templateUrl: 'js/app/preference-modal/preference-modal.html',
     controller: preferenceInfoInfoController
   };
 
 
-  function preferenceInfoInfoController($http, $rootScope, $location) {
+  function preferenceInfoInfoController($http, $rootScope, $location, config) {
     var vm = this;
 
     // default colors
@@ -69,7 +69,7 @@
     }
 
     vm.loadUserColors = function() {
-      $http.get('http://localhost/motherbeardashboard/getPreferences.php?email=bthom214@live.kutztown.edu').then(loadSuccess, loadFail);
+      $http.get(config.routes.preference.view).then(loadSuccess, loadFail);
     }
 
     vm.saveUserParams = function() {
@@ -81,7 +81,7 @@
         layout: vm.layout
       }
 
-      $http.post('http://localhost/motherbeardashboard/updatePreferences.php', params).then(saveSuccess, saveFail);
+      $http.post(config.routes.preference.update, params).then(saveSuccess, saveFail);
     }
 
     $rootScope.$on('login', function(event, profile) {
@@ -96,7 +96,7 @@
     vm.loadDefault();
   }
 
-  preferenceInfoInfoController.$inject = ['$http', '$rootScope','$location'];
+  preferenceInfoInfoController.$inject = ['$http', '$rootScope','$location', 'config'];
 
   function panelDirective($rootScope) {
     return {

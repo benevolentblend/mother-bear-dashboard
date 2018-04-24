@@ -5,12 +5,12 @@ $responce = array();
 $responce['success'] = true;
 $responce['message'] = "";
 
-// if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
-//   http_response_code(401);
-//   $responce['success'] = false;
-//   echo json_encode($responce);
-//   die();
-// }
+if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
+  http_response_code(401);
+  $responce['success'] = false;
+  echo json_encode($responce);
+  die();
+}
 
 if(!isset($_POST['color1']) && !isset($_POST['color2']) && !isset($_POST['color3'])) {
   $responce['message'] = 'No values to update.';

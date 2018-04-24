@@ -1,9 +1,8 @@
 (function() {
-  var scheduleService = function($interval, $http, broadcastService) {
+  var scheduleService = function($interval, $http, broadcastService, config) {
     var timeoutid;
     var status = false;
     var email = '';
-    var location = 'http://localhost/motherbeardashboard/calendar.php?email=';
 
     function success(res) {
       console.log(res.data);
@@ -15,7 +14,7 @@
     }
 
     function update() {
-      $http.get(location + email, {cache: false}).then(success, fail);
+      $http.get(config.routes.schedule.view, {cache: false}).then(success, fail);
     }
 
     function start(em) {
@@ -40,7 +39,7 @@
     }
   }
 
-  scheduleService.$inject = ['$interval', '$http', 'broadcastService'];
+  scheduleService.$inject = ['$interval', '$http', 'broadcastService', 'config'];
 
   angular
     .module('app')

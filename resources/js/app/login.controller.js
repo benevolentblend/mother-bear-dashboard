@@ -1,6 +1,6 @@
 (function() {
 
-  function loginController($http, $rootScope) {
+  function loginController($http, $rootScope, config) {
     var vm = this;
 
     vm.email = "";
@@ -47,11 +47,11 @@
         email: vm.email,
         password: vm.password
       }
-      $http.post('http://localhost/motherbeardashboard/login.php', data).then(successfulLogin, failedLogin);
+      $http.post(config.routes.user.login, data).then(successfulLogin, failedLogin);
     }
 
     vm.logoutUser = function() {
-      $http.get('http://localhost/motherbeardashboard/logout.php').then(successfulLogout, failedLogout);
+      $http.get(config.routes.user.logout).then(successfulLogout, failedLogout);
     }
 
     $rootScope.$on('customize.update', function(event, data) {
@@ -59,7 +59,7 @@
     });
   }
 
-  loginController.$inject = ['$http', '$rootScope'];
+  loginController.$inject = ['$http', '$rootScope', 'config'];
 
   angular
     .module('app')

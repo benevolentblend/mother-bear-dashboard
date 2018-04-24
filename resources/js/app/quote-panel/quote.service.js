@@ -1,8 +1,8 @@
 (function() {
-  var quoteService = function($interval, $http, broadcastService) {
+  var quoteService = function($interval, $http, broadcastService, config) {
     var timeoutid;
     var status = false;
-    var location = 'http://quotes.rest/qod.json';
+    var location = '';
 
     function success(res) {
       console.log(res.data);
@@ -14,7 +14,7 @@
     }
 
     function update() {
-      $http.get(location, {cache: true}).then(success, fail);
+      $http.get(config.routes.quote.view, {cache: true}).then(success, fail);
     }
 
     function start() {
@@ -38,7 +38,7 @@
     }
   }
 
-  quoteService.$inject = ['$interval', '$http', 'broadcastService'];
+  quoteService.$inject = ['$interval', '$http', 'broadcastService', 'config'];
 
   angular
     .module('app')

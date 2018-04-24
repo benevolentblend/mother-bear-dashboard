@@ -5,3 +5,7 @@
 schedule-panel {
   min-height: 250px;
 }
+
+.panel {
+  border-width: 3px;
+}

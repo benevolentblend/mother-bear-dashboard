@@ -57,5 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
-*backend/config.php
+resources/js/app/app.config.js
+backend/config.php
 ui-playground

@@ -5,18 +5,16 @@ $responce = array();
 $responce['success'] = true;
 $responce['message'] = "";
 
-// if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
-//   http_response_code(401);
-//   $responce['success'] = false;
-//   echo json_encode($responce);
-//   die();
-// }
+if(!isset($_SESSION['authenicated']) || !$_SESSION['authenicated']) {
+  http_response_code(401);
+  $responce['success'] = false;
+  echo json_encode($responce);
+  die();
+}
 
 require('mysql_connect.php');
 
-// $userEmail = $_SESSION['email'];
-
-$userEmail = $_GET['email'];
+$userEmail = $_SESSION['user'];
 
 openConnection();
 
