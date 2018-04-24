@@ -38,6 +38,10 @@ if(isset($_POST['color3'])) {
   $updates .= 'color3="#'.$_POST['color3'].'", ';
 }
 
+if(isset($_POST['layout'])) {
+  $updates .= 'layout="'.$_POST['layout'].'", ';
+}
+
 $updates = substr($updates, 0, -2);
 
 $query = "UPDATE users SET $updates WHERE email = '$userEmail';";

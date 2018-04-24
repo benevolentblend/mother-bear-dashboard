@@ -5,13 +5,13 @@
  */
 
 (function() {
-  var dailyQuote = {
+  var quotePanel = {
     templateUrl: 'js/app/quote-panel/quote-panel.html',
-    controller: dailyQuoteController
+    controller: quoteController
   };
 
 
-  function dailyQuoteController($interval, $http, $scope) {
+  function quoteController($interval, $http, $rootScope, quoteService) {
     var vm = this;
     var timeoutid;
     var status = false;
@@ -19,50 +19,22 @@
 
     vm.response = undefined;
 
-    vm.start = function() {
-      if(!status) {
-        timeoutid = $interval(update, 4 * 60 * 60 * 1000);
-        status = true;
-        update();
-      }
-    }
-
-    vm.stop = function() {
-      if(status) {
-        $interval.cancel(timeoutid);
-        status = false;
-      }
-    }
-
-    function success(res) {
-      vm.response = res.data;
-      console.log(res.data);
-    }
-
-    function fail(res) {
-      vm.response = undefined;
-    }
-
-    function update() {
-      $http.get(location, {cache: true}).then(success, fail);
-    }
-
-    $scope.$on('login', function(event, profile) {
-      vm.start();
+    $rootScope.$on('login', function(event, profile) {
+      quoteService.start();
     });
 
-    $scope.$on('logout', function(event) {
-      vm.stop();
+    $rootScope.$on('logout', function(event) {
+      quoteService.stop();
     });
 
-    vm.$onDestroy = function() {
-      $interval.cancel(timeoutid);
-    }
+    $rootScope.$on('quote.update', function(event, data) {
+      vm.response = data;
+    });
   }
 
-  dailyQuoteController.$inject = ['$interval', '$http', '$scope'];
+  quoteController.$inject = ['$interval', '$http', '$rootScope', 'quoteService'];
 
   angular
     .module('app')
-    .component('quotePanel', dailyQuote);
+    .component('quotePanel', quotePanel);
 })();

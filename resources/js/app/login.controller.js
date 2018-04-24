@@ -1,12 +1,13 @@
 (function() {
 
-  function loginController($http, $scope) {
+  function loginController($http, $rootScope) {
     var vm = this;
 
     vm.email = "";
     vm.password = "";
     vm.loggedIn = false;
     vm.message = null;
+    vm.layout = 1;
 
     function successfulLogin (res) {
 
@@ -15,7 +16,7 @@
       vm.password = '';
       console.log(res);
 
-      $scope.$broadcast('login', {
+      $rootScope.$broadcast('login', {
         email: vm.email
       });
     }
@@ -24,7 +25,7 @@
       vm.loggedIn = false;
       console.log(res);
 
-      $scope.$broadcast('logout');
+      $rootScope.$broadcast('logout');
     }
 
     function failedLogin (res) {
@@ -40,7 +41,8 @@
       vm.message = res.data.message;
     }
 
-    this.loginUser = function() {
+    vm.loginUser = function() {
+      console.log('called login');
       var data = {
         email: vm.email,
         password: vm.password
@@ -48,12 +50,16 @@
       $http.post('http://localhost/motherbeardashboard/login.php', data).then(successfulLogin, failedLogin);
     }
 
-    this.logoutUser = function() {
+    vm.logoutUser = function() {
       $http.get('http://localhost/motherbeardashboard/logout.php').then(successfulLogout, failedLogout);
     }
+
+    $rootScope.$on('customize.update', function(event, data) {
+      vm.layout = data.layout;
+    });
   }
 
-  loginController.$inject = ['$http', '$scope'];
+  loginController.$inject = ['$http', '$rootScope'];
 
   angular
     .module('app')

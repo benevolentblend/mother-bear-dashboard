@@ -3,31 +3,23 @@
   <h4 class="modal-title" id="myModalLabel">Customize</h4>
 </div>
 <div class="modal-body">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#colors" aria-controls="home" role="tab" data-toggle="tab">Colors</a></li>
-    <li role="presentation"><a href="#layouts" aria-controls="settings" role="tab" data-toggle="tab">Layouts</a></li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="colors">
-      <form class="" action="#" method="post">
-        <div class="form-group">
-          <label>Primary Color</label>
-          <input ng-model="$ctrl.color1" class="form-control" type="color" name="color">
-        </div>
-        <div class="form-group">
-          <label>Secondary Color</label>
-          <input ng-model="$ctrl.color2" class="form-control" type="color" name="color">
-        </div>
-        <div class="form-group">
-          <label>Background Color</label>
-          <input ng-model="$ctrl.color3" class="form-control" type="color" name="color">
-        </div>
-      </form>
+  <form class="" action="#" method="post">
+    <div class="form-group">
+      <label>Primary Color</label>
+      <input ng-model="$ctrl.color1" class="form-control" type="color" name="color">
     </div>
-    <div role="tabpanel" class="tab-pane" id="layouts">
-      Choose your Layout
+    <div class="form-group">
+      <label>Secondary Color</label>
+      <input ng-model="$ctrl.color2" class="form-control" type="color" name="color">
     </div>
-  </div>
+    <div class="form-group">
+      <label>Background Color</label>
+      <input ng-model="$ctrl.color3" class="form-control" type="color" name="color">
+    </div>
+  </form>
+  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(1)">View 1</button>
+  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(2)">View 2</button>
+  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(3)">View 3</button>
 </div>
 
 <div class="modal-footer">

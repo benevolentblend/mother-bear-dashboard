@@ -1,3 +1,7 @@
 .panel-default h3{
   text-align: center;
 }
+
+schedule-panel {
+  min-height: 250px;
+}

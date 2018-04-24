@@ -42,26 +42,15 @@
                   placeholder="Password" name="password"
                   ng-model="loginctl.password">
               </div>
-              <button type="submit" class="btn btn-default" ng-click="loginctl.loginUser()">Login</button>
+              <button type="submit" class="btn btn-default">Login</button>
             </form>
           </div>
         </div>
       </div>
-      <div class="row" ng-show="loginctl.loggedIn">
-        <div class="col-xs-12 col-md-4">
-          <weather-panel></weather-panel>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <schedule-panel></schedule-panel>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <time-panel></time-panel>
-        </div>
-      </div>
-      <div class="row" ng-show="loginctl.loggedIn">
-        <div class="col-xs-12">
-          <quote-panel></quote-panel>
-        </div>
+      <div ng-show="loginctl.loggedIn">
+        <layout1-view ng-show="loginctl.layout == 1"></layout1-view>
+        <layout2-view ng-show="loginctl.layout == 2"></layout2-view>
+        <layout3-view ng-show="loginctl.layout == 3"></layout3-view>
       </div>
     </div>
 
@@ -83,11 +72,16 @@
     <script src="./js/angular.min.js"></script>
     <script src="./js/app/app.module.js"></script>
     <script src="./js/app/login.controller.js"></script>
+    <script src="./js/app/broadcast.service.js"></script>
     <script src="./js/app/prefence-modal/prefence-modal.component.js"></script>
     <script src="./js/app/time-panel/time-panel.component.js"></script>
+    <script src="./js/app/time-panel/time.service.js"></script>
     <script src="./js/app/weather-panel/weather-panel.component.js"></script>
+    <script src="./js/app/weather-panel/weather.service.js"></script>
     <script src="./js/app/quote-panel/quote-panel.component.js"></script>
+    <script src="./js/app/quote-panel/quote.service.js"></script>
     <script src="./js/app/schedule-panel/schedule-panel.component.js"></script>
     <script src="./js/app/schedule-panel/schedule-panel.filter.js"></script>
+    <script src="./js/app/schedule-panel/schedule.service.js"></script>
   </body>
 </html>

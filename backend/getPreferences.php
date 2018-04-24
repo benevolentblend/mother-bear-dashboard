@@ -20,7 +20,7 @@ $userEmail = $_GET['email'];
 
 openConnection();
 
-$query = "SELECT color1, color2, color3 FROM users WHERE email = '$userEmail';";
+$query = "SELECT color1, color2, color3, layout FROM users WHERE email = '$userEmail';";
 
 $result = runQuery($query);
 
@@ -39,6 +39,7 @@ $responce['message'] = "retrieved $userEmail colors";
 $responce['color1'] = $user['color1'];
 $responce['color2'] = $user['color2'];
 $responce['color3'] = $user['color3'];
+$responce['layout'] = $user['layout'];
 
 echo json_encode($responce);
 closeConnection();

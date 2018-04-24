@@ -11,61 +11,25 @@
   };
 
 
-  function calendarInfoController($interval, $http, $scope) {
+  function calendarInfoController($interval, $http, $rootScope, scheduleService) {
     var vm = this;
-    var timeoutid;
-    var status = false;
-    var location = '/calendar/benjamin@thomasnetwork.net';
 
     vm.response = undefined;
-    vm.email = '';
 
-    vm.start = function() {
-      if(!status) {
-        timeoutid = $interval(update, 5 * 60 * 1000);
-        status = true;
-        update();
-      }
-
-    }
-
-    vm.stop = function() {
-      if(status) {
-        $interval.cancel(timeoutid);
-        status = false;
-      }
-    }
-
-    function success(res) {
-      vm.response = res.data;
-      console.log(res.data);
-    }
-
-    function fail(res) {
-      vm.response = undefined;
-    }
-
-    function update() {
-      var location = 'http://localhost/motherbeardashboard/calendar.php?email=' + vm.email;
-      $http.get(location, {cache: false}).then(success, fail);
-    }
-
-    $scope.$on('login', function(event, profile) {
-      vm.email = profile.email;
-      vm.start();
+    $rootScope.$on('login', function(event, profile) {
+      scheduleService.start(profile.email);
     });
 
-    $scope.$on('logout', function(event) {
+    $rootScope.$on('logout', function(event) {
       vm.stop();
     });
 
-    vm.$onDestroy = function() {
-      $interval.cancel(timeoutid);
-    }
-
+    $rootScope.$on('schedule.update', function(event, data) {
+      vm.response = data;
+    });
   }
 
-  calendarInfoController.$inject = ['$interval', '$http', '$scope'];
+  calendarInfoController.$inject = ['$interval', '$http', '$rootScope', 'scheduleService'];
 
   angular
     .module('app')
