@@ -3,26 +3,52 @@
   <h4 class="modal-title" id="myModalLabel">Customize</h4>
 </div>
 <div class="modal-body">
-  <form class="" action="#" method="post">
-    <div class="form-group">
-      <label>Primary Color</label>
-      <input ng-model="$ctrl.color1" class="form-control" type="color" name="color">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#colors" aria-controls="home" role="tab" data-toggle="tab">Colors</a></li>
+    <li role="presentation"><a href="#layouts" aria-controls="profile" role="tab" data-toggle="tab">Layouts</a></li>
+  </ul>
+  <br>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="colors">
+      <div class="form-group">
+        <label>Panel Color</label>
+        <input ng-model="$ctrl.color1" class="form-control" type="color" name="color">
+      </div>
+      <div class="form-group">
+        <label>Text Color</label>
+        <input ng-model="$ctrl.color2" class="form-control" type="color" name="color">
+      </div>
+      <div class="form-group">
+        <label>Background Color</label>
+        <input ng-model="$ctrl.color3" class="form-control" type="color" name="color">
+      </div>
+      <div class="form-group">
+        <label>Color Schemes</label>
+        <select  ng-model="selectedScheme" class="form-control"
+          ng-options="scheme as scheme.label for scheme in $ctrl.schemes track by scheme.id"
+          ng-change="$ctrl.setColors(selectedScheme.colors[0], selectedScheme.colors[1], selectedScheme.colors[2])">
+        </select>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Secondary Color</label>
-      <input ng-model="$ctrl.color2" class="form-control" type="color" name="color">
+    <div class="tab-pane" id="layouts">
+      <label>
+        <input ng-model="$ctrl.layout" type="radio" value="1">
+        <img class="layout-preview" src="images/layout1.png" alt="layout1" />
+      </label>
+      <label>
+        <input ng-model="$ctrl.layout" type="radio" value="2">
+        <img class="layout-preview" src="images/layout2.png" alt="layout1" />
+
+      </label>
+      <label>
+        <input ng-model="$ctrl.layout" type="radio" value="3">
+        <img class="layout-preview" src="images/layout3.png" alt="layout1" />
+      </label>
     </div>
-    <div class="form-group">
-      <label>Background Color</label>
-      <input ng-model="$ctrl.color3" class="form-control" type="color" name="color">
-    </div>
-  </form>
-  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(1)">View 1</button>
-  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(2)">View 2</button>
-  <button class="btn" type="button" name="button" ng-click="$ctrl.changeLayout(3)">View 3</button>
+  </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" id="closeCustomize" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button type="button" id="saveCustomize" class="btn btn-primary" ng-click="$ctrl.saveUserParams()">Save changes</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+  <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$ctrl.saveUserParams()">Save changes</button>
 </div>

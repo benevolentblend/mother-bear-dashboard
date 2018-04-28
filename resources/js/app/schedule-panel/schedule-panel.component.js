@@ -7,7 +7,10 @@
 (function() {
   var calendarInfo = {
     templateUrl: 'js/app/schedule-panel/schedule-panel.html',
-    controller: calendarInfoController
+    controller: calendarInfoController,
+    bindings: {
+      view: '='
+    }
   };
 
 
@@ -16,12 +19,12 @@
 
     vm.response = undefined;
 
-    $rootScope.$on('login', function(event, profile) {
-      scheduleService.start(profile.email);
+    $rootScope.$on('login', function(event) {
+      scheduleService.start();
     });
 
     $rootScope.$on('logout', function(event) {
-      vm.stop();
+      scheduleService.stop();
     });
 
     $rootScope.$on('schedule.update', function(event, data) {

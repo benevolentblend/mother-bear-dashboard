@@ -1,12 +1,18 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <p ng-show="$ctrl.response !== undefined && $ctrl.response.status == 401">
-      Click <a href="/auth">here</a> to authenticate.
-    </p>
     <table class="table">
       <tbody>
-        <tr ng-repeat="event in $ctrl.response.events | calendar">
+        <tr ng-repeat="event in $ctrl.response.events | calendar:$ctrl.view">
           <td>{{event.title}}</td>
+          <td ng-show="$ctrl.view == 'week'">
+            {{event.MON == 'Y' ? 'M':''}}
+            {{event.TUES == 'Y' ? 'T':''}}
+            {{event.WED == 'Y' ? 'W':''}}
+            {{event.THURS == 'Y' ? 'TH':''}}
+            {{event.FRI == 'Y' ? 'F':''}}
+            {{event.SAT == 'Y' ? 'S':''}}
+            {{event.SUN == 'Y' ? 'SN':''}}
+          <td>
           <td class="pull-right">{{event.starttime | date:'shortTime'}} - {{event.endtime | date:'shortTime'}}</td>
         </tr>
       </tbody>

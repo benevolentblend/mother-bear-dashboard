@@ -9,3 +9,7 @@ schedule-panel {
 .panel {
   border-width: 3px;
 }
+
+.layout-preview {
+  height: 280px;
+}

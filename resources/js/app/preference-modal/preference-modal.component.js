@@ -20,6 +20,26 @@
     vm.color3 = '#cec7bf';
     vm.layout = 1;
 
+    vm.schemes = [{
+      id: 1,
+      label: 'Default Colors',
+      colors: ['#ffffff', '#701931', '#cec7bf']
+    }, {
+      id: 2,
+      label: 'Cool Blue',
+      colors: ['#455bdf', '#ffffff', '#453d35']
+    }, {
+      id: 3,
+      label: 'Rad Colors',
+      colors: ['#D36582', '#FFEECF', '#2B59C3']
+    }, {
+      id: 3,
+      label: 'Poppin Orange',
+      colors: ['#F18805', '#ffffff', '#353531']
+    }];
+
+    vm.selectedScheme = vm.schemes[0];
+
     vm.setColors = function(clr1, clr2, clr3) {
       if(clr1)
         vm.color1 = clr1;
@@ -38,11 +58,6 @@
       });
     }
 
-    vm.changeLayout = function(view) {
-      vm.layout = view;
-      vm.update();
-    }
-
     vm.loadDefault = function() {
       vm.setColors('#ffffff', '#701931', '#cec7bf');
       vm.layout = 1;
@@ -52,6 +67,7 @@
     function loadSuccess(res) {
       console.log(res);
       vm.setColors(res.data.color1, res.data.color2, res.data.color3);
+      vm.layout = res.data.layout;
       vm.update();
     }
 
