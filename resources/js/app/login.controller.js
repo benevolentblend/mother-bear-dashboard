@@ -31,14 +31,21 @@
     function failedLogin (res) {
       console.log('login failed.')
       console.log(res);
-      vm.message = res.data.message;
       vm.loggedIn = false;
+
+      if(res.data && res.data.message)
+        vm.message = res.data.message;
+      else
+        vm.message = "There was a problem logging in.";
     }
 
     function failedLogout (res) {
       console.log('logout failed.')
       console.log(res);
-      vm.message = res.data.message;
+      if(res.data && res.data.message)
+        vm.message = res.data.message;
+      else
+        vm.message = "There was a problem logging out.";
     }
 
     vm.loginUser = function() {

@@ -27,13 +27,13 @@
     }, {
       id: 2,
       label: 'Cool Blue',
-      colors: ['#455bdf', '#ffffff', '#453d35']
+      colors: ['#9ca3ce', '#2f2f2f', '#453d35']
     }, {
       id: 3,
       label: 'Rad Colors',
       colors: ['#D36582', '#FFEECF', '#2B59C3']
     }, {
-      id: 3,
+      id: 4,
       label: 'Poppin Orange',
       colors: ['#F18805', '#ffffff', '#353531']
     }];
